@@ -13,7 +13,7 @@ Egyszerű parancssori segédprogram különböző programozási nyelvekhez tarto
 ## Használat
 
 ```bash
-program_neve <programozási nyelv> [opciók]
+./a.out <programozási nyelv> [opciók]
 ```
 
 ## Elérhető opciók
@@ -43,27 +43,27 @@ program_neve <programozási nyelv> [opciók]
 C alapkód generálása:
 
 ```bash
-program_neve c
+./a.out_neve c
 ```
 
 Python alapkód terminálba kiírása:
 
 ```bash
-program_neve py --stdout
+./a.out py --stdout
 ```
 
 Használati útmutató megjelenítése:
 
 ```bash
-program_neve --help
+./a.out --help
 ```
 
 ## Fordítás
 
-Példa GCC használatával:
+Makefile-val érdemes
 
 ```bash
-gcc projekt.c -o program_neve
+makefile c
 ```
 
 ## Licenc
