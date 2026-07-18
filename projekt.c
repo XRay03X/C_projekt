@@ -13,7 +13,64 @@ int file_letezik(const string fajlnev)
     }
     return 0;
 }
-
+string c_nyelv =
+    "#include <stdio.h>\n"
+    "\n"
+    "int main() {\n"
+    "    printf(\"Hello, world!\\n\");\n"
+    "    return 0;\n"
+    "}\n";
+string shell_nyelv =
+    "#!/bin/bash\n\n"
+    "echo \"Hello, world!\"\n";
+string c_plus_nyelv =
+    "#include <iostream>\n\n"
+    "int main() {\n"
+    "    std::cout << \"Hello, world!\\n\";\n"
+    "    return 0;\n";
+string java_nyelv =
+    "public class Main {\n"
+    "    public static void main(String[] args) {\n"
+    "        System.out.println(\"Hello, world!\");\n"
+    "    }\n"
+    "}\n";
+string csharp_nyelv =
+    "using System;\n\n"
+    "class Program {\n"
+    "    static void Main() {\n"
+    "        Console.WriteLine(\"Hello, world!\");\n"
+    "    }\n"
+    "}\n";
+string python_nyelv =
+    "#!/usr/bin/env python3\n\n"
+    "def main():\n"
+    "    print(\"Hello, world!\")\n\n"
+    "if __name__ == \"__main__\":\n"
+    "    main()\n";
+string fortran_nyelv =
+    "program hello\n"
+    "  implicit none\n"
+    "  print *, \"Hello, world!\"\n"
+    "end program hello\n";
+string rust_nyelv =
+    "fn main() {\n"
+    "    println!(\"Hello, world!\");\n"
+    "}\n";
+string assembly_nyelv =
+    "section .data\n"
+    "    msg db \"Hello, world!\", 0xA\n"
+    "    len equ $ - msg\n\n"
+    "section .text\n"
+    "    global _start\n\n"
+    "_start:\n"
+    "    mov rax, 1\n"
+    "    mov rdi, 1\n"
+    "    mov rsi, msg\n"
+    "    mov rdx, len\n"
+    "    syscall\n\n"
+    "    mov rax, 60\n"
+    "    xor rdi, rdi\n"
+    "    syscall\n";
 void main_file_generalas(string nyelv)
 {
     FILE *file;
@@ -67,90 +124,49 @@ void main_file_generalas(string nyelv)
 
     if (strcmp(nyelv, "c") == 0)
     {
-        fprintf(file, "#include <stdio.h>\n\n");
-        fprintf(file, "int main() {\n");
-        fprintf(file, "    printf(\"Hello, world!\\n\");\n");
-        fprintf(file, "    return 0;\n");
-        fprintf(file, "}\n");
+        fprintf(file, "%s", c_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "sh") == 0)
     {
-        fprintf(file, "#!/bin/bash\n\n");
-        fprintf(file, "echo \"Hello, world!\"\n");
+        fprintf(file, "%s", shell_nyelv);
         fclose(file);
-        // system("chmod +x main.sh"); Windows támogatottság miatt kiszedve
     }
     else if (strcmp(nyelv, "cpp") == 0)
     {
-        fprintf(file, "#include <iostream>\n\n");
-        fprintf(file, "int main() {\n");
-        fprintf(file, "    std::cout << \"Hello, world!\\n\";\n");
-        fprintf(file, "    return 0;\n");
-        fprintf(file, "}\n");
+        fprintf(file, "%s", c_plus_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "java") == 0)
     {
-        fprintf(file, "public class Main {\n");
-        fprintf(file, "    public static void main(String[] args) {\n");
-        fprintf(file, "        System.out.println(\"Hello, world!\");\n");
-        fprintf(file, "    }\n");
-        fprintf(file, "}\n");
+        fprintf(file, "%s", java_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "csharp") == 0)
     {
-        fprintf(file, "using System;\n\n");
-        fprintf(file, "class Program {\n");
-        fprintf(file, "    static void Main() {\n");
-        fprintf(file, "        Console.WriteLine(\"Hello, world!\");\n");
-        fprintf(file, "    }\n");
-        fprintf(file, "}\n");
+        fprintf(file, "%s", csharp_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "py") == 0)
     {
-        fprintf(file, "#!/usr/bin/env python3\n\n");
-        fprintf(file, "def main():\n");
-        fprintf(file, "    print(\"Hello, world!\")\n\n");
-        fprintf(file, "if __name__ == \"__main__\":\n");
-        fprintf(file, "    main()\n");
+        fprintf(file, "%s", python_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "fort") == 0)
     {
-        fprintf(file, "program hello\n");
-        fprintf(file, "  implicit none\n");
-        fprintf(file, "  print *, \"Hello, world!\"\n");
-        fprintf(file, "end program hello\n");
+        fprintf(file, "%s", fortran_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "rust") == 0)
     {
-        fprintf(file, "fn main() {\n");
-        fprintf(file, "    println!(\"Hello, world!\");\n");
-        fprintf(file, "}\n");
+        fprintf(file, "%s", rust_nyelv);
         fclose(file);
     }
     else if (strcmp(nyelv, "asm") == 0)
     {
-        fprintf(file, "section .data\n");
-        fprintf(file, "    msg db \"Hello, world!\", 0xA\n");
-        fprintf(file, "    len equ $ - msg\n\n");
-        fprintf(file, "section .text\n");
-        fprintf(file, "    global _start\n\n");
-        fprintf(file, "_start:\n");
-        fprintf(file, "    mov rax, 1\n");
-        fprintf(file, "    mov rdi, 1\n");
-        fprintf(file, "    mov rsi, msg\n");
-        fprintf(file, "    mov rdx, len\n");
-        fprintf(file, "    syscall\n\n");
-        fprintf(file, "    mov rax, 60\n");
-        fprintf(file, "    xor rdi, rdi\n");
-        fprintf(file, "    syscall\n");
+        fprintf(file, "%s", assembly_nyelv);
         fclose(file);
-    } // ez az utasitas szintén csak linuxon müködik
+    }
     printf(" A(z) %s alapkód fájl létrehozásra került!\n", nyelv);
 }
 
@@ -158,79 +174,39 @@ void main_file_generalas_stdoutra(string nyelv)
 {
     if (strcmp(nyelv, "c") == 0)
     {
-        printf("#include <stdio.h>\n\n");
-        printf("int main() {\n");
-        printf("    printf(\"Hello, world!\\n\");\n");
-        printf("    return 0;\n");
-        printf("}\n");
+        printf("%s", c_nyelv);
     }
     else if (strcmp(nyelv, "sh") == 0)
     {
-        printf("#!/bin/bash\n\n");
-        printf("echo \"Hello, world!\"\n");
+        printf("%s", shell_nyelv);
     }
     else if (strcmp(nyelv, "cpp") == 0)
     {
-        printf("#include <iostream>\n\n");
-        printf("int main() {\n");
-        printf("    std::cout << \"Hello, world!\\n\";\n");
-        printf("    return 0;\n");
-        printf("}\n");
+        printf("%s", c_plus_nyelv);
     }
     else if (strcmp(nyelv, "java") == 0)
     {
-        printf("public class Main {\n");
-        printf("    public static void main(String[] args) {\n");
-        printf("        System.out.println(\"Hello, world!\");\n");
-        printf("    }\n");
-        printf("}\n");
+        printf("%s", java_nyelv);
     }
     else if (strcmp(nyelv, "csharp") == 0)
     {
-        printf("using System;\n\n");
-        printf("class Program {\n");
-        printf("    static void Main() {\n");
-        printf("        Console.WriteLine(\"Hello, world!\");\n");
-        printf("    }\n");
-        printf("}\n");
+        printf("%s", csharp_nyelv);
     }
     else if (strcmp(nyelv, "py") == 0)
     {
-        printf("#!/usr/bin/env python3\n\n");
-        printf("def main():\n");
-        printf("    print(\"Hello, world!\")\n\n");
-        printf("if __name__ == \"__main__\":\n");
-        printf("    main()\n");
+        printf("%s", python_nyelv);
     }
     else if (strcmp(nyelv, "fort") == 0)
     {
-        printf("program hello\n");
-        printf("  implicit none\n");
-        printf("  print *, \"Hello, world!\"\n");
-        printf("end program hello\n");
+        printf("%s", fortran_nyelv);
     }
     else if (strcmp(nyelv, "rust") == 0)
     {
-        printf("fn main() {\n");
-        printf("    println!(\"Hello, world!\");\n");
-        printf("}\n");
+        printf("%s", rust_nyelv);
     }
     else if (strcmp(nyelv, "asm") == 0)
     {
-        printf("section .data\n");
-        printf("    msg db \"Hello, world!\", 0xA\n");
-        printf("    len equ $ - msg\n\n");
-        printf("section .text\n");
-        printf("    global _start\n\n");
-        printf("_start:\n");
-        printf("    mov rax, 1\n");
-        printf("    mov rdi, 1\n");
-        printf("    mov rsi, msg\n");
-        printf("    mov rdx, len\n");
-        printf("    syscall\n\n");
-        printf("    mov rax, 60\n");
-        printf("    xor rdi, rdi\n");
-        printf("    syscall\n");
+        printf("%s", assembly_nyelv);
     }
     else
     {
@@ -260,7 +236,7 @@ int main(int argc, string argv[])
     string kapcsolo = argv[1];
     if (strcmp(kapcsolo, "--version") == 0 || strcmp(kapcsolo, "-v") == 0)
     {
-        printf("Alapkód generátor, Verzió 0.3, Barna István\n");
+        printf("Alapkód generátor, Verzió 0.4, Barna István\n");
         return 0;
     }
 
