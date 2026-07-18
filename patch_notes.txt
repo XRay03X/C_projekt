@@ -1,0 +1,4 @@
+0.4 verzió frissités sztringbe rendezés a könnyebb bővítés értelmében 2026.07.18.
+0.3 verzió frissités a 2 éves kód bővítése, olvashatóbb változók, új nyelvek 2026.06.01.
+0.2 verzió a kész kód megírása 2024.05.14
+0.1 verzió projekt elkezdése 2023.05.15
